@@ -1,0 +1,43 @@
+class Solution:
+    def removeInvalidParentheses(self, s: str) -> List[str]:
+        open,close = self.countRedundant(s)
+        results=[]
+        self.dfs(s,open,close,0,results)
+        return list(set(results))
+    
+    def dfs(self,s,open,close,start,results): 
+        if open==0 and close==0:
+            if self.isValid(s):
+                results.append(s)
+                
+        for index in range(start,len(s)):
+            # if index>start and s[index]==s[index-1]: #will give duplicate results
+            #     continue  
+            #     #because removing either one will give the same output
+            
+            char = s[index]
+            
+            if open>0 and char=='(':
+                self.dfs(s[:index] + s[index+1:],open-1,close,index,results)
+            if close>0 and char==')':
+                self.dfs(s[:index] + s[index+1:],open,close-1,index,results)
+                
+    def isValid(self,s):
+        open,close = self.countRedundant(s)
+        if open==0 and close==0:
+            return True
+        return False
+            
+    def countRedundant(self,s):
+        open,close=0,0
+        
+        for char in s:
+            if char=='(':
+                open+=1
+            if char==')':
+                if open:
+                    open-=1
+                else:
+                    close+=1
+        return open,close
+        
