@@ -1,0 +1,11 @@
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        prefix=[]
+        for iterator in zip(*strs):
+            if len(set(iterator))==1:
+                prefix.append(iterator[0])
+            else:
+                break
+        return "".join(prefix)
+        
+        
