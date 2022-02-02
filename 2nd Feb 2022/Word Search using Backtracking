@@ -1,0 +1,40 @@
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+   
+        def backtrack(i,j,word):
+            
+            
+            if i>=len(board) or j>=len(board[0]) or j<0 or i<0:
+                return
+            if board[i][j]==word[0]:
+                if not word[1:]:
+                    return True
+                else:
+                    word=word[1:]
+                    tmp=board[i][j]
+                    board[i][j]=" "
+                
+            else:
+                return 
+            
+            if backtrack(i+1,j,word):
+                
+                return True
+            if  backtrack(i,j+1,word):
+                
+                return True
+            if backtrack(i,j-1,word):
+                
+                return True
+            if  backtrack(i-1,j,word):
+                
+                return True
+            board[i][j]=tmp
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                if backtrack(i,j,word):
+                    print(board)
+                    return True
+                else:
+                    print(board)
+                    continue
