@@ -1,0 +1,29 @@
+class Solution:
+    def combinationSum(self, arr: List[int], target: int) -> List[List[int]]:
+        res=[]
+        stack=[]
+        
+        def isValid(stack):
+            if stack.copy() in res:
+                return False
+            return True
+            
+        def backtrack(j):
+            
+            if sum(stack)==target:
+                if not res: 
+                    res.append(sorted(stack.copy()))
+                if isValid(sorted(stack)):
+                    res.append(sorted(stack.copy()))
+            if sum(stack)>target:
+                return
+            
+            for i in range(len(arr)):
+                stack.append(arr[i])
+                backtrack(i)
+                stack.pop()
+        backtrack(0) 
+        print("res is:",res)
+        return res
+        
+        
