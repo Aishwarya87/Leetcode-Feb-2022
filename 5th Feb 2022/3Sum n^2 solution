@@ -1,0 +1,27 @@
+N3 SOLUTION is achieved but gives TLE.
+
+N2 solution:
+
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        
+        res=[]
+        
+        if len(nums)<3:
+            return res
+         
+        nums.sort()
+        print(nums)
+        for i in range(len(nums)-2):
+            
+            lower= i+1
+            upper = len(nums)-1
+            while lower<upper:
+                if nums[i]+nums[lower]+nums[upper]==0:
+                    res.append((nums[i],nums[lower],nums[upper]))
+                    lower+=1  #can also be upper-=1 but will take more time.
+                elif nums[i]+nums[lower]+nums[upper]<0:
+                    lower+=1
+                else:
+                    upper-=1 
+        return list(set(res))
