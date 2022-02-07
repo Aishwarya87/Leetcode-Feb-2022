@@ -1,0 +1,66 @@
+hm={}
+
+for i in range(0,64):
+    if i>=0 and i<=25:
+        hm[i]= chr(ord('A')+i)
+    elif i>=26 and i<=51:
+        hm[i]= chr(ord('a')+(i-26))
+    elif i>=52 and i<=61:
+        hm[i]= chr(ord('0')+(i-52))
+    elif i==62:
+        hm[i]= '+'
+    elif i==63:
+        hm[i]= '/'
+
+str1 = input()
+flg=0
+for x in str1:
+    if x not in hm.values():
+        flg=1
+        print(-1)
+if flg==0:
+    lst = []
+
+    for x in str1:
+        y =ord(x)
+
+        y= bin(int(y))
+        y= y[2:]
+        if len(y)<8:
+            l = 8- len(y)
+            for i in range(l):
+             y= '0'+ y
+
+        lst.append(y)
+
+    str2= ''.join(lst)
+
+
+    if len(str2)%6 !=0:
+        extraZeroes=0
+        while(len(str2)%6!=0):
+            extraZeroes+=1
+            str2= str2+ '0'
+
+
+    i=0
+    newLst=[]
+    while(i<len(str2)):
+        newLst.append(str2[i:i+6])
+        i=i+6
+
+
+    output=[]
+
+    for i in newLst:
+        output.append(int(i,2))
+
+
+
+    print(output)
+    res=[]
+    for x in output:
+        res.append(hm[x])
+
+    print(''.join(res))
+
