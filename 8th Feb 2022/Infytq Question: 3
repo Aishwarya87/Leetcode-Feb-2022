@@ -1,0 +1,30 @@
+inarr= [2,3,1,1,2,4,2,0,1,1]
+i=0
+sum_arr=[inarr[0]]
+flg=0
+while(i<len(inarr)-1):
+
+    val = inarr[i]
+
+    max1=0
+    for k in range(i+1,val+1+i):
+        if val+i+1>=len(inarr)-1 :
+            if val>=len(inarr)-i-1:
+                 index=len(inarr)-1
+                 break
+            else:
+                flg=1
+                print(-1)
+                break
+        if k<len(inarr):
+            if inarr[k]>=max1:
+                max1=inarr[k]
+                index=k
+
+    if flg==1:
+        break
+    i= index
+    sum_arr.append(inarr[i])
+if flg==0:
+    print(sum(sum_arr),",",len(sum_arr)-1)
+
