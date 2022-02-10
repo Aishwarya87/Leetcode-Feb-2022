@@ -1,0 +1,21 @@
+class Solution:
+    def getRow(self, rowIndex: int) -> List[int]:
+        
+        lst = [[1],[1,1]]
+        if rowIndex<1:
+            return [1]
+        for i in range(1,rowIndex): #1,2,
+            tmp=[1]
+            print(i)
+            j=0
+            
+            while(j!=len(lst[i])-1):
+                tmp.append(lst[i][j]+lst[i][j+1])
+                j+=1
+            tmp.append(1)
+            lst.append(tmp)
+            
+            print(lst)
+        return lst[-1]
+        
+        
