@@ -1,0 +1,23 @@
+class Solution:
+    def generateMatrix(self, n: int) -> List[List[int]]:
+        matrix=[[0 for j in range(n)]for i in range(n)]
+        def recursion(fill,direction,i,j):
+            if i>=n or j>=n or i<0 or j<0 or fill>n*n:
+                return
+            print(matrix)
+            if matrix[i][j]!=0:
+                return
+            
+            matrix[i][j]=fill
+            if direction=='u':
+                recursion(fill+1,'u',i-1,j)
+           
+            recursion(fill+1,'r',i,j+1)
+            recursion(fill+1,'d',i+1,j)
+            recursion(fill+1,'l',i,j-1)
+            recursion(fill+1,'u',i-1,j)
+            
+        recursion(1,'r',0,0)
+        return matrix
+        
+        
