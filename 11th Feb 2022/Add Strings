@@ -1,0 +1,41 @@
+class Solution:
+    def addStrings(self, num1: str, num2: str) -> str:
+        
+        
+        sumStr=""
+        carry=0
+        temp=0
+        if len(num1)!= len(num2):
+            if len(num1)<len(num2):
+                num1,num2 = num2,num1
+            tmp1=len(num1)
+            tmp2= len(num2)
+            i=0
+            while(i!=(tmp1-tmp2)):
+                num2 = "0"+num2
+                i+=1
+            
+        print(num1)
+        print(num2)
+        len1 = len(num1)
+        len2= len(num2)
+        for i in range(len1-1,-1,-1):
+            temp += int(num1[i])+int(num2[i])
+            carry = temp//10
+            sumStr =  str(temp%10)+ sumStr
+            if carry!=0:
+                temp= carry
+            else:
+                temp=0
+        
+            if len(num1)<len(num2):
+                num1,num2 = num2,num1
+            
+            #num2 has small length
+            
+            
+            
+        if carry:
+            return str(carry)+sumStr
+        return sumStr
+            
