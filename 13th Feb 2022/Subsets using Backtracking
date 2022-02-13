@@ -1,0 +1,25 @@
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        #Time complexity: n*2^n: n= maximum length of each subset.
+        # number of subsets = 2^n
+        lst=[]
+        stack=[]
+        def backtrack(i):
+            print(stack)
+            if stack not in lst:
+                lst.append(stack.copy())
+                
+            if i>=len(nums):
+                return
+            #decision to include nums[i]
+            stack.append(nums[i])
+            backtrack(i+1)
+            
+            #decision not to include nums[i]
+            stack.pop()
+            backtrack(i+1)
+            
+        backtrack(0)
+        return lst
+        
+        
