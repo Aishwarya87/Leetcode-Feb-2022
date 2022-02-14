@@ -1,0 +1,20 @@
+Using top down memoization
+
+class Solution:
+    def canPartition(self, nums: List[int]) -> bool:
+        total = sum(nums)
+        if total%2!=0: #odd; cannot be partitoned into two groups
+            return False
+        memo={}  #top down memoization
+        print(total)
+        def recursion(total,i):
+            if (total,i) in memo:
+                return memo[(total,i)]
+            if total==0:
+                return True
+            if i==len(nums):
+                return False
+            memo[(total,i)] = recursion(total-nums[i],i+1) or recursion(total,i+1)
+            return memo[(total,i)]
+            
+        return recursion(total//2,0)
