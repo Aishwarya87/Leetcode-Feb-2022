@@ -1,0 +1,21 @@
+class Solution:
+    def countBits(self, n: int) -> List[int]:
+        res= [0 for i in range(n+1)]
+        print(res)
+        if n==0:
+            return [0]
+        
+        res[0]=0
+        res[1]=1
+        
+        for i in range(n):
+            if i*2>=len(res):
+                break
+            res[i*2] = res[i]
+            if (i*2)+1>=len(res):
+                break
+            res[(i*2)+1] = res[i]+1
+            
+        return res
+        
+        
