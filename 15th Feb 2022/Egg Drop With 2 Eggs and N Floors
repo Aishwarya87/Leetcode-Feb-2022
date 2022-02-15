@@ -1,0 +1,10 @@
+class Solution:
+    def twoEggDrop(self, n: int) -> int:
+        r=0
+        while(n>0):
+            r+=1
+            n-=r
+            
+            print(n)
+        return r
+        
