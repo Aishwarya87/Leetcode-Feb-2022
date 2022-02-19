@@ -1,0 +1,29 @@
+class Solution:
+    def maxSatisfaction(self, satisfaction: List[int]) -> int:
+        satisfaction.sort()
+        print(satisfaction)
+        answer=0
+        
+        #all negatives
+        if satisfaction[0]<0:
+            if satisfaction[len(satisfaction)-1]<=0:
+                return 0
+        #mixed or all positives
+        ind=-1
+        
+        for i in range(len(satisfaction)-1,-1,-1):
+            if satisfaction[i]<0:
+                if answer+satisfaction[i]<0:
+                    ind=i
+                    break
+            answer+=satisfaction[i]
+        
+        print(ind)
+        res=0
+        j=1
+        for i in range(ind+1,len(satisfaction)):
+            res+=satisfaction[i]*j
+            j+=1
+        return res
+        
+        
